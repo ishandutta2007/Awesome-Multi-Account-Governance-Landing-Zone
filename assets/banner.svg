@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="50%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+
+    <!-- Accent Gradients -->
+    <linearGradient id="primaryGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="50%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+    
+    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.07)" />
+      <stop offset="100%" stop-color="rgba(255, 255, 255, 0.02)" />
+    </linearGradient>
+
+    <!-- Drop Shadow Filters -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+
+    <!-- Flow Line Dash Animation -->
+    <style>
+      @keyframes dash {
+        to {
+          stroke-dashoffset: -40;
+        }
+      }
+      @keyframes floatSlow {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+      }
+      @keyframes pulseGlow {
+        0%, 100% { opacity: 0.4; }
+        50% { opacity: 0.8; }
+      }
+      .animated-flow {
+        stroke-dasharray: 8, 12;
+        animation: dash 2.5s linear infinite;
+      }
+      .floating-card {
+        animation: floatSlow 6s ease-in-out infinite;
+      }
+      .glowing-bg {
+        animation: pulseGlow 4s ease-in-out infinite;
+      }
+    </style>
+  </defs>
+
+  <!-- Base Canvas Background -->
+  <rect width="1200" height="360" rx="16" fill="url(#bgGradient)" />
+
+  <!-- Grid Pattern Overlay -->
+  <g opacity="0.08">
+    <path d="M0 40H1200 M0 80H1200 M0 120H1200 M0 160H1200 M0 200H1200 M0 240H1200 M0 280H1200 M0 320H1200" stroke="#ffffff" stroke-width="1"/>
+    <path d="M100 0V360 M200 0V360 M300 0V360 M400 0V360 M500 0V360 M600 0V360 M700 0V360 M800 0V360 M900 0V360 M1000 0V360 M1100 0V360" stroke="#ffffff" stroke-width="1"/>
+  </g>
+
+  <!-- Ambient Dynamic Glowing Circles (Background Layer) -->
+  <circle cx="200" cy="90" r="140" fill="#6366f1" opacity="0.15" filter="url(#glow)" class="glowing-bg" />
+  <circle cx="1000" cy="270" r="160" fill="#ec4899" opacity="0.12" filter="url(#glow)" class="glowing-bg" />
+  <circle cx="950" cy="80" r="120" fill="#06b6d4" opacity="0.15" filter="url(#glow)" class="glowing-bg" />
+
+  <!-- Animated Network Connection Lines -->
+  <g stroke-width="2" opacity="0.6">
+    <path d="M 150 290 Q 300 240 450 290 T 750 290" fill="none" stroke="url(#primaryGlow)" class="animated-flow" />
+    <path d="M 750 290 Q 900 320 1050 280" fill="none" stroke="url(#cyanGlow)" class="animated-flow" />
+  </g>
+
+  <!-- Floating Governance Architecture Cards (Midground Layer) -->
+  <g class="floating-card" opacity="0.85">
+    <!-- AWS Control Tower Card -->
+    <g transform="translate(760, 45)" filter="url(#shadow)">
+      <rect width="180" height="52" rx="10" fill="url(#cardBg)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1" />
+      <circle cx="30" cy="26" r="14" fill="#ff9900" opacity="0.2"/>
+      <text x="30" y="31" text-anchor="middle" fill="#ff9900" font-family="system-ui, sans-serif" font-weight="bold" font-size="12">AWS</text>
+      <text x="56" y="25" fill="#ffffff" font-family="system-ui, sans-serif" font-weight="600" font-size="13">Control Tower</text>
+      <text x="56" y="39" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="10">Account Vending</text>
+    </g>
+
+    <!-- Terraform / OpenTofu Card -->
+    <g transform="translate(965, 90)" filter="url(#shadow)">
+      <rect width="180" height="52" rx="10" fill="url(#cardBg)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1" />
+      <circle cx="30" cy="26" r="14" fill="#8b5cf6" opacity="0.2"/>
+      <text x="30" y="31" text-anchor="middle" fill="#a78bfa" font-family="system-ui, sans-serif" font-weight="bold" font-size="12">IaC</text>
+      <text x="56" y="25" fill="#ffffff" font-family="system-ui, sans-serif" font-weight="600" font-size="13">OpenTofu / TF</text>
+      <text x="56" y="39" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="10">Modular Baselines</text>
+    </g>
+
+    <!-- Guardrails / OPA Card -->
+    <g transform="translate(840, 160)" filter="url(#shadow)">
+      <rect width="190" height="52" rx="10" fill="url(#cardBg)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1" />
+      <circle cx="30" cy="26" r="14" fill="#10b981" opacity="0.2"/>
+      <text x="30" y="31" text-anchor="middle" fill="#34d399" font-family="system-ui, sans-serif" font-weight="bold" font-size="14">🛡️</text>
+      <text x="56" y="25" fill="#ffffff" font-family="system-ui, sans-serif" font-weight="600" font-size="13">Policy Guardrails</text>
+      <text x="56" y="39" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="10">OPA &amp; Cloud Custodian</text>
+    </g>
+  </g>
+
+  <!-- Foreground Title and Subtitle Layer (Prominent Z-Index) -->
+  <g transform="translate(60, 0)">
+    <!-- Decorative Category Tag -->
+    <g transform="translate(0, 55)">
+      <rect width="280" height="28" rx="14" fill="url(#primaryGlow)" opacity="0.2" />
+      <rect width="280" height="28" rx="14" stroke="url(#primaryGlow)" stroke-width="1" fill="none" />
+      <text x="140" y="19" text-anchor="middle" fill="#c7d2fe" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="bold" letter-spacing="1">
+        ☁️ ENTERPRISE CLOUD ARCHITECTURE
+      </text>
+    </g>
+
+    <!-- Main Title -->
+    <text x="0" y="142" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="40" fill="#ffffff" filter="url(#shadow)">
+      Multi-Account Governance
+    </text>
+    <text x="0" y="190" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="40" fill="url(#primaryGlow)" filter="url(#shadow)">
+      &amp; Landing Zone Ecosystem
+    </text>
+
+    <!-- Subtitle -->
+    <text x="0" y="234" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="400" font-size="16" fill="#e2e8f0" opacity="0.95">
+      Curated Guide to Account Vending, Policy Guardrails, IaC Frameworks &amp; Multi-Cloud Control Planes
+    </text>
+
+    <!-- Dynamic Tech Badges / Pills in Footer of Banner -->
+    <g transform="translate(0, 268)">
+      <!-- Pill 1: AWS / Azure / GCP -->
+      <rect x="0" y="0" width="130" height="30" rx="8" fill="rgba(255, 255, 255, 0.08)" stroke="rgba(255, 255, 255, 0.15)"/>
+      <text x="65" y="19" text-anchor="middle" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="12" font-weight="600">☁️ Multi-Cloud</text>
+
+      <!-- Pill 2: Landing Zone Automation -->
+      <rect x="142" y="0" width="165" height="30" rx="8" fill="rgba(255, 255, 255, 0.08)" stroke="rgba(255, 255, 255, 0.15)"/>
+      <text x="224.5" y="19" text-anchor="middle" fill="#a78bfa" font-family="system-ui, sans-serif" font-size="12" font-weight="600">🚀 Account Factory</text>
+
+      <!-- Pill 3: Compliance & Security -->
+      <rect x="319" y="0" width="165" height="30" rx="8" fill="rgba(255, 255, 255, 0.08)" stroke="rgba(255, 255, 255, 0.15)"/>
+      <text x="401.5" y="19" text-anchor="middle" fill="#34d399" font-family="system-ui, sans-serif" font-size="12" font-weight="600">🔒 Guardrails &amp; OPA</text>
+
+      <!-- Pill 4: Open Source & SaaS -->
+      <rect x="496" y="0" width="140" height="30" rx="8" fill="rgba(255, 255, 255, 0.08)" stroke="rgba(255, 255, 255, 0.15)"/>
+      <text x="566" y="19" text-anchor="middle" fill="#f472b6" font-family="system-ui, sans-serif" font-size="12" font-weight="600">⚡ Open-Source</text>
+    </g>
+  </g>
+</svg>
